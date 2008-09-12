@@ -10,7 +10,7 @@ class Report < ActiveRecord::Base
   end
 
   def self.all_today
-    @@all_today ||= find(:all, :conditions => "date_trunc('created_at', day) = current_date")
+    @@all_today ||= find(:all, :conditions => "date_trunc('day', created_at) = current_date")
   end
 
   def self.create_if_interesting(attributes)
