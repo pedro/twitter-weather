@@ -26,7 +26,7 @@ class Report < ActiveRecord::Base
   end
 
   def interesting?
-    #return false if not_a_good_time
+    return false if not_a_good_time
 
     return true unless last = Report.last
     return true if last.older_than? 8.hours
