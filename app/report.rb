@@ -1,5 +1,6 @@
 require 'active_record'
 require 'active_support'
+require 'twitter'
 
 class Report < ActiveRecord::Base
   before_create :build_tweet, :publish
@@ -49,7 +50,7 @@ class Report < ActiveRecord::Base
   end
 
   def publish
-    puts "MY TWEET IS: #{self.tweet}"
+    Twitter::Base.new(ENV['TWITTER_USER'], ENV['TWITTER_PASS']).update(self.tweet)
   end
 
   def older_than?(period)
